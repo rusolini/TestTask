@@ -38,7 +38,7 @@ namespace Dropdownlistmvc.Controllers
         {
 
             _recipeRepository.AddRecipes(recipe);
-            return RedirectToAction("Edit");
+            return JavaScript("window.close();"); 
         }
 
         public ActionResult Confirm()
