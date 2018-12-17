@@ -39,14 +39,10 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-primary glyphicon glyphicon-check"/>
-                @Html.ActionLink(" Добавить блюдо", "AddRecipe", new { recipeName = "asd" }, new {@class = "btn btn-primary glyphicon glyphicon-check"})
+                <input type="submit" value="Save" class="btn btn-primary glyphicon glyphicon-check" />
+                <input type="button" value="Save" onclick="window.open('@Url.Action("Confirm", "Dish")', 'newwindow', 'width=300,height=250');return false;" class="btn btn-primary glyphicon glyphicon-check" />           
             </div>
         </div>
-        <div class="col-md-offset-2 col-md-10">
-            <input type="button" value="Save" onclick="window.open('@Url.Content("Confirm.cshtml")', 'newwindow', 'width=300,height=250');return false;" class="btn btn-primary glyphicon glyphicon-check"/>
-        </div>
-
     </div>
 }
 

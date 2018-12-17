@@ -34,14 +34,16 @@ namespace Dropdownlistmvc.Controllers
             return View("Edit",dish);
         }
 
-        public ActionResult AddRecipe(string recipeName)
+        public ActionResult AddRecipe(Recipe recipe)
         {
-            Recipe recipe = new Recipe
-            {
-                RecipeName = recipeName
-            };
+
             _recipeRepository.AddRecipes(recipe);
             return RedirectToAction("Edit");
+        }
+
+        public ActionResult Confirm()
+        {
+            return View("Confirm");
         }
 
         public ActionResult Edit(int? Id)

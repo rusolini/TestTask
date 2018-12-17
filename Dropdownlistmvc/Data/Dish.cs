@@ -19,7 +19,7 @@ namespace Dropdownlistmvc.Data
         [Required]
         [DisplayName("Recipe")]
         public int RecipeId { get; set; }
-        //TO get Name Details
+
         public virtual Recipe Recipes { get; set; }
         //To use it with DropDownList Fill
         public virtual IEnumerable<Recipe> RecipesEnum { get; set; }

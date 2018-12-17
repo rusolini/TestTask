@@ -15,6 +15,7 @@ namespace Dropdownlistmvc.Repository
         public void AddRecipes(Recipe recipe)
         {
             context.Recipe.Add(recipe);
+            context.SaveChanges();
         }
     }
 }
