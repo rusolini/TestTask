@@ -1,19 +1,17 @@
-﻿@model Dropdownlistmvc.Data.Dish
+﻿@model WhatWeEat.Data.Dish
 
 @{
     ViewBag.Title = "Edit";
 }
-
 
 @using (Html.BeginForm("Edit", "Dish", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Dish</h4>
+        <h4>Добавить блюдо</h4>
         @Html.ValidationSummary(true, "", new {@class = "text-danger"})
         @Html.HiddenFor(model => model.Id)
-
         <div class="form-group">
             @Html.LabelFor(model => model.FirstName, htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
@@ -36,16 +34,15 @@
                 @Html.ValidationMessageFor(model => model.RecipeId, "", new {@class = "text-danger"})
             </div>
         </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-primary glyphicon glyphicon-check" />
-                <input type="button" value="Save" onclick="window.open('@Url.Action("Confirm", "Dish")', 'newwindow', 'width=300,height=250');return false;" class="btn btn-primary glyphicon glyphicon-check" />           
+                <input type="button" value="Добавить блюдо" onclick="window.open('@Url.Action("Confirm", "Dish")', 'newwindow', 'width=300,height=250');return false;" class="btn btn-primary glyphicon glyphicon-check" />           
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index", null, new {@classs = "btn btn-info glyphicon glyphicon-th-list"})
+    @Html.ActionLink("Назад", "Index", null, new {@classs = "btn btn-info glyphicon glyphicon-th-list"})
 </div>

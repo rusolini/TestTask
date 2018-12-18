@@ -1,13 +1,13 @@
-﻿using Dropdownlistmvc.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using WhatWeEat.Data;
 
-namespace Dropdownlistmvc.Repository
+namespace WhatWeEat.Repository
 {
-    public class EFDbContext: DbContext
+    public class EfDbContext: DbContext
     {
         public DbSet<Dish> Dish { get; set; }
         public DbSet<Recipe> Recipe { get; set; }

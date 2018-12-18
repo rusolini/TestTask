@@ -1,7 +1,7 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Dropdownlistmvc.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Dropdownlistmvc.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(WhatWeEat.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(WhatWeEat.App_Start.NinjectWebCommon), "Stop")]
 
-namespace Dropdownlistmvc.App_Start
+namespace WhatWeEat.App_Start
 {
     using System;
     using System.Web;

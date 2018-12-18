@@ -1,13 +1,13 @@
-﻿using Dropdownlistmvc.Data;
-using Dropdownlistmvc.Service;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using WhatWeEat.Data;
+using WhatWeEat.Service;
 
-namespace Dropdownlistmvc.Controllers
+namespace WhatWeEat.Controllers
 {
     public class DishController : Controller
     {
@@ -19,11 +19,13 @@ namespace Dropdownlistmvc.Controllers
             _dishRepository = dishRepo;
             _recipeRepository = recipeRepo;
         }
+
         public ActionResult Index()
         {
             IEnumerable<Dish> model = _dishRepository.GetDishs;
             return View(model);
         }
+
         public ActionResult AddDish()
         {
             Dish dish = new Dish
@@ -31,14 +33,21 @@ namespace Dropdownlistmvc.Controllers
                 Id = 0,
                 RecipesEnum = _recipeRepository.GetRecipes
             };
-            return View("Edit",dish);
+            return View("Edit", dish);
         }
 
         public ActionResult AddRecipe(Recipe recipe)
         {
+            if (ModelState.IsValid)
+            {
+                if (_recipeRepository.GetRecipes.Any(rec => rec.RecipeName != recipe.RecipeName))
+                {
+                    _recipeRepository.AddRecipes(recipe);
+                    return View("Close");
+                }
+            }
 
-            _recipeRepository.AddRecipes(recipe);
-            return JavaScript("window.close();"); 
+            return View("Confirm");
         }
 
         public ActionResult Confirm()
@@ -52,20 +61,25 @@ namespace Dropdownlistmvc.Controllers
             {
                 return HttpNotFound();
             }
+
             Dish dish = _dishRepository.GetDish(Id);
             dish.RecipesEnum = _recipeRepository.GetRecipes;
             return View(dish);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Dish data)
         {
-            if (ModelState.IsValid)
+            
+            if (ModelState.IsValid || data.Id != 0)
             {
+                data.UpdateDateTime = DateTime.Now;
                 _dishRepository.Save(data);
                 TempData["message"] = "Save";
                 return RedirectToAction("Index");
             }
+
             data.RecipesEnum = _recipeRepository.GetRecipes;
             return View(data);
         }
@@ -76,6 +90,7 @@ namespace Dropdownlistmvc.Controllers
             {
                 HttpNotFound();
             }
+
             _dishRepository.Delete(Id);
             TempData["message"] = "Deleted";
             return RedirectToAction("Index");

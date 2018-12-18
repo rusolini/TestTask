@@ -1,21 +1,21 @@
-﻿using Dropdownlistmvc.Service;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Dropdownlistmvc.Data;
+using WhatWeEat.Data;
+using WhatWeEat.Service;
 
-namespace Dropdownlistmvc.Repository
+namespace WhatWeEat.Repository
 {
     public class RecipeRepository : IRecipe
     {
-        readonly EFDbContext context = new EFDbContext();
-        public IEnumerable<Recipe> GetRecipes => context.Recipe;
+        private readonly EfDbContext _context = new EfDbContext();
+        public IEnumerable<Recipe> GetRecipes => _context.Recipe;
 
         public void AddRecipes(Recipe recipe)
         {
-            context.Recipe.Add(recipe);
-            context.SaveChanges();
+            _context.Recipe.Add(recipe);
+            _context.SaveChanges();
         }
     }
 }

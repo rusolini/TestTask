@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
-using Dropdownlistmvc.Data;
-using Dropdownlistmvc.Service;
+using WhatWeEat.Data;
+using WhatWeEat.Service;
 
-namespace Dropdownlistmvc.Repository
+namespace WhatWeEat.Repository
 {
     public class DishRepository : IDish
     {
-        private readonly EFDbContext context = new EFDbContext();
+        private readonly EfDbContext context = new EfDbContext();
         public IList<Dish> GetDishs => context.Dish.ToList();
 
         public void Delete(int? Id)
@@ -35,10 +36,13 @@ namespace Dropdownlistmvc.Repository
             else
             {
                 var dbEntry = context.Dish.Find(dish.Id);
+                context.Dish.Remove(dbEntry);
+                context.SaveChanges();
                 dbEntry.Id = dish.Id;
                 dbEntry.FirstName = dish.FirstName;
                 dbEntry.Email = dish.Email;
                 dbEntry.RecipeId = dish.RecipeId;
+                context.Dish.AddOrUpdate(dbEntry);
                 context.SaveChanges();
             }
         }

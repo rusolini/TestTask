@@ -96,22 +96,11 @@
       <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.DynamicData" />
-    <Reference Include="System.Web.Entity" />
-    <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Web.Services" />
-    <Reference Include="System.EnterpriseServices" />
     <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <HintPath>..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
       <Private>True</Private>
@@ -141,21 +130,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="libman.json" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -166,7 +146,6 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
@@ -177,30 +156,31 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DishController.cs" />
+    <Compile Include="Data\IsExistValidateAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Data\Dish.cs" />
     <Compile Include="Data\Recipe.cs" />
-    <Compile Include="Migrations\201812162053422_InitialCreate.cs" />
-    <Compile Include="Migrations\201812162053422_InitialCreate.Designer.cs">
-      <DependentUpon>201812162053422_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201812172257366_currentTime.cs" />
+    <Compile Include="Migrations\201812172257366_currentTime.Designer.cs">
+      <DependentUpon>201812172257366_currentTime.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812162110032_as.cs" />
-    <Compile Include="Migrations\201812162110032_as.Designer.cs">
-      <DependentUpon>201812162110032_as.cs</DependentUpon>
+    <Compile Include="Migrations\201812172308167_updateTime.cs" />
+    <Compile Include="Migrations\201812172308167_updateTime.Designer.cs">
+      <DependentUpon>201812172308167_updateTime.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812162137060_cb.cs" />
-    <Compile Include="Migrations\201812162137060_cb.Designer.cs">
-      <DependentUpon>201812162137060_cb.cs</DependentUpon>
+    <Compile Include="Migrations\201812180014144_change.cs" />
+    <Compile Include="Migrations\201812180014144_change.Designer.cs">
+      <DependentUpon>201812180014144_change.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812162207431_salaryremove.cs" />
-    <Compile Include="Migrations\201812162207431_salaryremove.Designer.cs">
-      <DependentUpon>201812162207431_salaryremove.cs</DependentUpon>
+    <Compile Include="Migrations\add_index.cs" />
+    <Compile Include="Migrations\add_index.Designer.cs">
+      <DependentUpon>add_index.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812170039327_asd.cs" />
-    <Compile Include="Migrations\201812170039327_asd.Designer.cs">
-      <DependentUpon>201812170039327_asd.cs</DependentUpon>
+    <Compile Include="Migrations\add_required.cs" />
+    <Compile Include="Migrations\add_required.Designer.cs">
+      <DependentUpon>add_required.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -223,6 +203,7 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Dish\Edit.cshtml" />
     <Content Include="Views\Dish\Confirm.cshtml" />
+    <Content Include="Views\Dish\Close.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -235,20 +216,20 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201812162053422_InitialCreate.resx">
-      <DependentUpon>201812162053422_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812172257366_currentTime.resx">
+      <DependentUpon>201812172257366_currentTime.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812162110032_as.resx">
-      <DependentUpon>201812162110032_as.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812172308167_updateTime.resx">
+      <DependentUpon>201812172308167_updateTime.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812162137060_cb.resx">
-      <DependentUpon>201812162137060_cb.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812180014144_change.resx">
+      <DependentUpon>201812180014144_change.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812162207431_salaryremove.resx">
-      <DependentUpon>201812162207431_salaryremove.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\add_index.resx">
+      <DependentUpon>add_index.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812170039327_asd.resx">
-      <DependentUpon>201812170039327_asd.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\add_required.resx">
+      <DependentUpon>add_required.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

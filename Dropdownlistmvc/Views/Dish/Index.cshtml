@@ -1,16 +1,19 @@
-﻿@model IEnumerable<Dropdownlistmvc.Data.Dish>
+﻿@model IEnumerable<WhatWeEat.Data.Dish>
 
 @{
-    ViewBag.Title = "Dish";
+    ViewBag.Title = "Блюдо";
 }
 
-<h2>Dish</h2>
+<h2>Блюда</h2>
 
 <p>
     @Html.ActionLink(" Рассказать", "AddDish",null, new { @class = "btn btn-primary glyphicon glyphicon-plus" })
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateDateTime)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
         </th>
@@ -19,12 +22,16 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.RecipeId)
-        </th>      
-        <th></th>
+        </th>
+        <th>
+        </th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdateDateTime)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.FirstName)
         </td>
@@ -34,33 +41,23 @@
         <td>
             @Html.DisplayFor(modelItem => item.Recipes.RecipeName)
         </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Salary)
-        </td>*@
-        
         <td>
-            @Html.ActionLink(" ", "Delete", new { Id = item.Id }, new {  @class = "btn btn-danger glyphicon glyphicon-remove" }) |
-            @Html.ActionLink(" Edit", "Edit", new {Id= item.Id }, new { @class = "btn btn-primary glyphicon glyphicon-ok" })         
+            @Html.ActionLink(" ", "Delete", new { Id = item.Id }, new { @class = "btn btn-danger glyphicon glyphicon-remove" }) |
+            @Html.ActionLink(" Edit", "Edit", new { Id= item.Id }, new { @class = "btn btn-primary glyphicon glyphicon-ok" })         
         </td>
     </tr>
 }
-
 </table>
 
 @section Scripts {
     <script>
-
-
         $(document).ready(function () {
             if ('@TempData["message"]' === "Deleted") {
                $.notify("Warning: your record has been deleted successfully", "warn");
             }
             if ('@TempData["message"]' === "Save"){
                 $.notify("your record has been Saved successfully", "success");
-
             }
         });
-
-
     </script>
 }
