@@ -11,7 +11,7 @@ namespace WhatWeEat.Data
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             return _context.Recipe.Any(rec => rec.RecipeName == (string)value)
-                ? new ValidationResult("Этот Рецепт уже есть в системе")
+                ? new ValidationResult("Это блюдо уже кто-то когда-то ел")
                 : null;
         }
     }
