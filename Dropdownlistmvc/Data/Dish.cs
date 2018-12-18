@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Web;
 
 namespace WhatWeEat.Data
 {
@@ -16,15 +14,12 @@ namespace WhatWeEat.Data
 
         [Required]
         [DisplayName("First Name")]
-        [Index("IX_FirstAndSecond", 1, IsUnique = true)]
         [MaxLength(25)]
-        [IsExistValidateAttribute("Email")]
         public string FirstName { get; set; }
 
         [Required]
         [EmailAddress]
         [DisplayName("Email")]
-        [Index("IX_FirstAndSecond", 2, IsUnique = true)]
         [MaxLength(25)]
         public string Email { get; set; }
 

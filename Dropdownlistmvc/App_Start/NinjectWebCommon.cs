@@ -65,6 +65,7 @@ namespace WhatWeEat.App_Start
         {
             kernel.Bind<IDish>().To<DishRepository>();
             kernel.Bind<IRecipe>().To<RecipeRepository>();
+            kernel.Bind<IUserStatus>().To<StatusRepository>();
         }        
     }
 }

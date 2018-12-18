@@ -7,7 +7,9 @@
         <div class="col-md-10">
             @Html.EditorFor(model => model.RecipeName, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.RecipeName, "", new { @class = "text-danger" })
-            <button type="submit" onclick="window.opener.location.reload();close();" class="btn btn-primary glyphicon glyphicon-check">OK</button>
+            <div class="col-md-pull-10">
+                <button  type="submit" id="submitOK" class="btn btn-primary glyphicon glyphicon-check">OK</button>
+            </div>
         </div>
     </div>
 }

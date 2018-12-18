@@ -157,6 +157,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DishController.cs" />
     <Compile Include="Data\IsExistValidateAttribute.cs" />
+    <Compile Include="Data\UserStatus.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -174,6 +175,10 @@
     <Compile Include="Migrations\201812180014144_change.Designer.cs">
       <DependentUpon>201812180014144_change.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812180238420_add-status.cs" />
+    <Compile Include="Migrations\201812180238420_add-status.Designer.cs">
+      <DependentUpon>201812180238420_add-status.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\add_index.cs" />
     <Compile Include="Migrations\add_index.Designer.cs">
       <DependentUpon>add_index.cs</DependentUpon>
@@ -186,9 +191,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\EFDbContext.cs" />
     <Compile Include="Repository\DishRepository.cs" />
+    <Compile Include="Repository\StatusRepository.cs" />
     <Compile Include="Repository\RecipeRepository.cs" />
     <Compile Include="Service\IDish.cs" />
     <Compile Include="Service\IRecipe.cs" />
+    <Compile Include="Service\IUserStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -224,6 +231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812180014144_change.resx">
       <DependentUpon>201812180014144_change.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812180238420_add-status.resx">
+      <DependentUpon>201812180238420_add-status.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\add_index.resx">
       <DependentUpon>add_index.cs</DependentUpon>

@@ -6,6 +6,11 @@
 
 <h2>Блюда</h2>
 
+@if (!string.IsNullOrEmpty(ViewBag.Text))
+{
+    @ViewBag.Text
+}
+
 <p>
     @Html.ActionLink(" Рассказать", "AddDish",null, new { @class = "btn btn-primary glyphicon glyphicon-plus" })
 </p>

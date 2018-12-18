@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -13,15 +14,18 @@ namespace WhatWeEat.Controllers
     {
         private readonly IDish _dishRepository;
         private readonly IRecipe _recipeRepository;
+        private readonly IUserStatus _statusRepository;
 
-        public DishController(IDish dishRepo, IRecipe recipeRepo)
+        public DishController(IDish dishRepo, IRecipe recipeRepo, IUserStatus statusRepo)
         {
             _dishRepository = dishRepo;
             _recipeRepository = recipeRepo;
+            _statusRepository = statusRepo;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string status)
         {
+            ViewBag.Text = status;
             IEnumerable<Dish> model = _dishRepository.GetDishs;
             return View(model);
         }
@@ -71,13 +75,32 @@ namespace WhatWeEat.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Dish data)
         {
-            
             if (ModelState.IsValid || data.Id != 0)
             {
+
+                var recipeName = _recipeRepository.GetRecipes.Where(recipe => recipe.RecipeId == data.RecipeId)
+                    .Select(recipe => recipe.RecipeName).FirstOrDefault();
+
+                var status = _dishRepository.GetDishs.Any(dish =>
+                    dish.Email == data.Email && dish.FirstName == data.FirstName)
+                    ? $"{data.FirstName}, с возвращением! Вы только что съели  " +
+                      $"{recipeName}" +
+                      $" Всего вы съели {recipeName}" +
+                      $@" {_dishRepository.GetDishs.Count(dish => 
+                          dish.RecipeId == data.RecipeId 
+                          && dish.FirstName == data.FirstName 
+                          && dish.Email == data.Email) + 1} " +
+                      $" раз! За сегодня {recipeName} было съедено {_dishRepository.GetDishs.Count(dish => dish.RecipeId == data.RecipeId) + 1} раз"
+                    : $" {data.FirstName}, мы рады приветствовать вас в нашем сообществе! Вы только что съели " +
+                      $" {recipeName}" +
+                      $" За сегодня {recipeName} было съедено {_dishRepository.GetDishs.Count(dish => dish.RecipeId == data.RecipeId) + 1}";
+
+
                 data.UpdateDateTime = DateTime.Now;
                 _dishRepository.Save(data);
+
                 TempData["message"] = "Save";
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new {status});
             }
 
             data.RecipesEnum = _recipeRepository.GetRecipes;

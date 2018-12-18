@@ -12,7 +12,7 @@ namespace WhatWeEat.Data
         public int RecipeId { get; set; }
 
         [Required]
-        [IsExistRecipeValidateAttribute]
+        [IsExistRecipeValidate]
         public string RecipeName { get; set; }
     }
 }
